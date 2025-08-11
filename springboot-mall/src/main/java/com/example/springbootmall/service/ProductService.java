@@ -4,8 +4,13 @@ import com.example.springbootmall.dto.ProductRequest;
 import com.example.springbootmall.model.Product;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 
 public interface ProductService  {
+
+   List<Product> getProducts();
+
    Product getProductById(Integer productId);
 
    Integer createProduct(ProductRequest productRequest);

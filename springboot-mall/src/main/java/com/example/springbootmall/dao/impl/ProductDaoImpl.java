@@ -5,6 +5,7 @@ import com.example.springbootmall.dto.ProductRequest;
 import com.example.springbootmall.model.Product;
 import com.example.springbootmall.rowmapper.ProductRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -22,6 +23,12 @@ public class ProductDaoImpl implements ProductDao {
 
     @Autowired
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    public List<Product> getProducts() {
+        String  sql = "select * from product";
+        RowMapper<Product> rowMapper = new ProductRowMapper();
+        return namedParameterJdbcTemplate.query(sql, rowMapper);
+    }
 
     @Override
     public Product getProductById(Integer productId) {
