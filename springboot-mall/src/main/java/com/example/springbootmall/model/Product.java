@@ -9,10 +9,10 @@ public class Product {
     private String productName;
     private ProductCategory category;
     private String imageUrl;
-    private Integer Price;
-    private Integer Stock;
-    private String Description;
-    private Date CreateDate;
+    private Integer price;
+    private Integer stock;
+    private String description;
+    private Date createDate;
     private Date lastModifiedDate;
 
     public Integer getProductId() {
@@ -48,35 +48,35 @@ public class Product {
     }
 
     public Integer getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(Integer price) {
-        Price = price;
+        this.price = price;
     }
 
     public Integer getStock() {
-        return Stock;
+        return stock;
     }
 
     public void setStock(Integer stock) {
-        Stock = stock;
+        this.stock = stock;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public Date getCreateDate() {
-        return CreateDate;
+        return createDate;
     }
 
     public void setCreateDate(Date createDate) {
-        CreateDate = createDate;
+        this.createDate = createDate;
     }
 
     public Date getLastModifiedDate() {
