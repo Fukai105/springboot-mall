@@ -1,5 +1,6 @@
 package com.example.springbootmall.controller;
 
+import com.example.springbootmall.dto.UserLoginRequest;
 import com.example.springbootmall.dto.UserRegisterRequest;
 import com.example.springbootmall.model.User;
 import com.example.springbootmall.service.UserService;
@@ -17,10 +18,18 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/users/register")
-    public ResponseEntity<User> register(@RequestBody @Valid UserRegisterRequest userRegisterRequest){
-        Integer userId=userService.register(userRegisterRequest);
+    public ResponseEntity<User> register(@RequestBody @Valid UserRegisterRequest userRegisterRequest) {
+        Integer userId = userService.register(userRegisterRequest);
 
-        User user=userService.getUserById(userId);
+        User user = userService.getUserById(userId);
+        return ResponseEntity.ok(user);
+    }
+
+    @PostMapping("/users/login")
+    public ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest) {
+
+        User user =userService.login(userLoginRequest);
+
         return ResponseEntity.ok(user);
     }
 }
