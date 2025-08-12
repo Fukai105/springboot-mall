@@ -1,5 +1,6 @@
 package com.example.springbootmall.dao.impl;
 
+import com.example.springbootmall.constant.ProductCategory;
 import com.example.springbootmall.dao.ProductDao;
 import com.example.springbootmall.dto.ProductRequest;
 import com.example.springbootmall.model.Product;
@@ -24,10 +25,24 @@ public class ProductDaoImpl implements ProductDao {
     @Autowired
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public List<Product> getProducts() {
-        String  sql = "select * from product";
-        RowMapper<Product> rowMapper = new ProductRowMapper();
-        return namedParameterJdbcTemplate.query(sql, rowMapper);
+    @Override
+    public List<Product> getProducts(ProductCategory category,String search) {
+        String  sql = "select * from product where 1=1";
+
+        Map<String, Object> map = new HashMap<>();
+
+        if(category!=null){
+            sql += " and category= :category";
+            map.put("category", category.name());
+        }
+
+        if(search!=null){
+            sql += " and product_name like :search";
+            map.put("search","%"+search+"%");
+        }
+
+        List<Product> productList = namedParameterJdbcTemplate.query(sql, map, new ProductRowMapper());
+        return productList;
     }
 
     @Override
