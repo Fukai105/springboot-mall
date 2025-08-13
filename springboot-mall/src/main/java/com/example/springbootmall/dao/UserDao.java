@@ -1,6 +1,7 @@
 package com.example.springbootmall.dao;
 
 import com.example.springbootmall.dto.UserRegisterRequest;
+import com.example.springbootmall.model.Order;
 import com.example.springbootmall.model.User;
 
 public interface UserDao {
